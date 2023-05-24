@@ -51,7 +51,7 @@ func Find{{ .EntityUcFirst }}ByID({{ .Entity }} *entities.{{ .EntityUcFirst }}) 
 		if errors.Is(err, gorm.ErrRecordNotFound) {
 			return {{ .Project }}.ErrEntityNotFound
 		}
-		log.Println("Error in db.Find{{ .Entity }}ByID:", err)
+		log.Println("Error in db.Find{{ .EntityUcFirst }}ByID:", err)
 		return {{ .Project }}.ErrSomethingWentWrong
 	}
 	copier.Copy(&{{ .Entity }}, &{{ .Entity }}DB)
