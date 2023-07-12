@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"strings"
 
@@ -115,9 +116,15 @@ func main() {
 	for key, value := range KVs {
 		fileContent = strings.ReplaceAll(fileContent, fmt.Sprintf("{{ .%s }}", key), value)
 	}
-	file, _ := os.Open("./db/" + entity + "_repo.go")
+	fileName := "./db/" + entity + "_repo.go"
+	file, err := os.Create(fileName)
+	if err != nil {
+		log.Fatal("Error creating file:", err)
+	}
 	defer file.Close()
-	file.WriteString(fileContent)
+	if _, err := file.WriteString(fileContent); err != nil {
+		log.Fatal("Error writing file:", err)
+	}
 }
 
 func upperFirst(s string) string {
