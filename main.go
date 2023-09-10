@@ -22,7 +22,7 @@ const templateStr = `
 package db
 
 import (
-	"{{ .Module }}/entities"
+	"{{ .Module }}/backend/entities"
 	"errors"
 	"log"
 
@@ -30,7 +30,7 @@ import (
 	"github.com/twharmon/slices"
 	"gorm.io/gorm"
 
-	"{{ .Module }}/{{ .Project }}"
+	"{{ .Module }}/backend/{{ .Project }}"
 )
 
 func FindAll{{ .EntitiesUcFirst }}() ([]entities.{{ .EntityUcFirst }}, error) {
